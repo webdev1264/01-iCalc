@@ -31,6 +31,7 @@ const Buttons = ({
   signClick,
   equalClick,
   dotClick,
+  sign,
 }) => {
   return (
     <div className={styles.btns}>
@@ -43,7 +44,9 @@ const Buttons = ({
               : (index + 1) % 4 === 0
               ? "orangeBtn"
               : "darkBtn"
-          } ${index === 16 && "wideBtn"} `}
+          } ${index === 16 ? "wideBtn" : ""} ${
+            btn === sign ? "orangeBtnReverse" : ""
+          } `}
           btnName={btn}
           onClick={
             typeof btn === "number"

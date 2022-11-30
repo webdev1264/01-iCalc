@@ -8,29 +8,49 @@ function App() {
 
   const { sign, num, res } = calc;
 
-  const math = (num, res, sign) => {
-    if (parseFloat(num) === 0 && sign === "÷") {
+  const math = (sign, num, res) => {
+    if (sign === "÷" && num === 0) {
       return "Error";
     }
-    return sign === "+"
-      ? res + num
-      : sign === "-"
-      ? res - num
-      : sign === "×"
-      ? res * num
-      : res / num;
+    if (isNaN(num) || isNaN(res)) {
+      return "Error";
+    }
+    return (
+      sign === "+"
+        ? res + num
+        : sign === "-"
+        ? res - num
+        : sign === "×"
+        ? res * num
+        : res / num
+    ).toString();
   };
 
   const numClickHandler = (event) => {
-    const btnNum = event.target.innerHTML;
-    setCalc({
-      ...calc,
-      num: num
-        ? parseFloat(num.toString() + btnNum)
-        : num === 0 && btnNum === "0"
-        ? "0"
-        : parseFloat(btnNum),
-    });
+    if (!num || num.toString().length < 9) {
+      const btnNum = event.target.innerHTML;
+      setCalc({
+        ...calc,
+        num: num ? num.toString() + btnNum : btnNum,
+      });
+    }
+  };
+
+  const signClickHandler = (event) => {
+    if (num || res) {
+      setCalc({
+        sign: event.target.innerHTML,
+        res: res ? math(sign, +num, +res) : num ? num : "0",
+      });
+    }
+  };
+
+  const equalClickHandler = () => {
+    if (num || res) {
+      setCalc({
+        res: math(sign, +num, +res),
+      });
+    }
   };
 
   const resetClickHandler = () => {
@@ -38,48 +58,51 @@ function App() {
   };
 
   const reverseClickHandler = () => {
-    setCalc({
-      ...calc,
-      num: num ? -num : num,
-      res: res && !num ? -res : res,
-    });
+    if (num) {
+      return setCalc({
+        ...calc,
+        num: (-num).toString(),
+      });
+    }
+    if (res) {
+      setCalc({
+        ...calc,
+        res: (-res).toString(),
+      });
+    }
   };
 
   const persentClickHandler = () => {
-    setCalc({
-      ...calc,
-      num: num ? num / 100 : num,
-      res: res && !num ? res / 100 : res,
-    });
-  };
-
-  const equalClickHandler = () => {
-    setCalc({
-      sign: "",
-      num: 0,
-      res: math(parseFloat(num), parseFloat(res), sign),
-    });
-  };
-
-  const signClickHandler = (event) => {
-    setCalc({
-      ...calc,
-      sign: event.target.innerHTML,
-      num: 0,
-      res:
-        parseFloat(res) || parseFloat(res) === 0
-          ? math(num, res, sign)
-          : parseFloat(num),
-    });
+    if (num) {
+      return setCalc({
+        ...calc,
+        num: (+num / 100).toString(),
+      });
+    }
+    if (res) {
+      setCalc({
+        ...calc,
+        res: (+res / 100).toString(),
+      });
+    }
   };
 
   const dotClickHandler = () => {
-    setCalc({
-      ...calc,
-      num: num ? num.toString() + "." : num,
-      res: res && !num ? res.toString() + "." : res,
-    });
+    if (num && !num.includes(".")) {
+      return setCalc({
+        ...calc,
+        num: num + ".",
+      });
+    }
+    if (res && !res.includes(".")) {
+      return setCalc({
+        ...calc,
+        res: res + ".",
+      });
+    }
   };
+
+  console.log(calc);
 
   return (
     <div className="App">
@@ -94,6 +117,7 @@ function App() {
           signClick={signClickHandler}
           equalClick={equalClickHandler}
           dotClick={dotClickHandler}
+          sign={calc.sign}
         />
       </div>
     </div>

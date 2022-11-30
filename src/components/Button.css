@@ -8,6 +8,13 @@
   padding: 12px;
   height: 70px;
   width: 70px;
+  transition: 0.5s all;
+}
+
+.lightBtn:hover,
+.darkBtn:hover {
+  filter: invert(1);
+  scale: 1.05;
 }
 
 .lightBtn {
@@ -17,6 +24,17 @@
 
 .orangeBtn {
   background-color: #fea00a;
+}
+
+.orangeBtn:hover {
+  color: #fea00a;
+  background-color: #fff;
+  scale: 1.05;
+}
+
+.orangeBtnReverse {
+  color: #fea00a;
+  background-color: #fff;
 }
 
 .darkBtn {
