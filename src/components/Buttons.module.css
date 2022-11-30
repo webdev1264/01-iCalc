@@ -1,0 +1,8 @@
+.btns {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #000;
+  border-radius: 30px;
+  margin: 17px auto;
+  padding: 6.5px;
+}
