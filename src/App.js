@@ -20,7 +20,7 @@ function App() {
         ? res + num
         : sign === "-"
         ? res - num
-        : sign === "×"
+        : sign === "x"
         ? res * num
         : res / num
     ).toString();
