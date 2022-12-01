@@ -31,7 +31,7 @@ function App() {
       const btnNum = event.target.innerHTML;
       setCalc({
         ...calc,
-        num: num ? num.toString() + btnNum : btnNum,
+        num: num ? parseFloat(num + btnNum).toString() : btnNum,
       });
     }
   };
@@ -52,7 +52,7 @@ function App() {
   };
 
   const equalClickHandler = () => {
-    if (num || res) {
+    if (num && res) {
       setCalc({
         res: math(sign, +num, +res),
       });

@@ -41,7 +41,7 @@ const Buttons = ({
           className={`btn ${
             index < 3
               ? "lightBtn"
-              : (index + 1) % 4 === 0
+              : (index + 1) % 4 === 0 || index === 18
               ? "orangeBtn"
               : "darkBtn"
           } ${index === 16 ? "wideBtn" : ""} ${
