@@ -12,7 +12,7 @@ function App() {
     if (sign === "÷" && num === 0) {
       return "Error";
     }
-    if (isNaN(num) || isNaN(res)) {
+    if (num === "Error" || res === "Error") {
       return "Error";
     }
     return (
@@ -37,10 +37,16 @@ function App() {
   };
 
   const signClickHandler = (event) => {
-    if (num || res) {
-      setCalc({
+    if (num && res) {
+      return setCalc({
         sign: event.target.innerHTML,
         res: res ? math(sign, +num, +res) : num ? num : "0",
+      });
+    }
+    if (num || res) {
+      return setCalc({
+        sign: event.target.innerHTML,
+        res: res ? res : num,
       });
     }
   };
