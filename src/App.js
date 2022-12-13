@@ -108,8 +108,6 @@ function App() {
     }
   };
 
-  console.log(calc);
-
   return (
     <div className="App">
       <h1 className="header">iCalc</h1>
