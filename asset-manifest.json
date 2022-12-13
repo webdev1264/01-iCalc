@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/01-iCalc/static/css/main.11ea62ba.css",
+    "main.js": "/01-iCalc/static/js/main.77ba1900.js",
+    "index.html": "/01-iCalc/index.html",
+    "main.11ea62ba.css.map": "/01-iCalc/static/css/main.11ea62ba.css.map",
+    "main.77ba1900.js.map": "/01-iCalc/static/js/main.77ba1900.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.11ea62ba.css",
+    "static/js/main.77ba1900.js"
+  ]
+}
